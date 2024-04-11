@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: test-auth
+  namespace: httpbin
+spec:
+  basicAuth:
+    secret: authsecret
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: authsecret
+  namespace: httpbin
+type: kubernetes.io/basic-auth
+data:
+  username: dXNlcg== # username: user
+  password: cGFzc3dvcmQ= # password: password
